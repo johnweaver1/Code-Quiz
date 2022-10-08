@@ -4,23 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
   <body>
     <!-- Placing my highscore here, so the user can look at the answers to the quiz they've recieved -->
-    <header>
-      <div class="">
-        <button class="">Highscores!</button>
+    <header class="">
+      <div class="row justify-content-between">
+        <button class="col-sm-1">Highscores!</button>
+          <div class="col-sm-1">
+            <span class="">Time Left: </span><span class="">0</span>
+          </div>
       </div>
       <div class="">
-      <span class="">Time Left: </span><span class="">0</span>
+      
       </div>
     </header>
     <div class="quiz-zone">
       <h2>The Coding Quiz!!!</h2>
     </div>
 
-    <div class="">
-      <button>Start</button>
+    <div class="row justify-content-center">
+      <div class="col-1">
+        <button type="button" class="btn btn-primary">Start</button>
+      </div>
     </div>
 
 
