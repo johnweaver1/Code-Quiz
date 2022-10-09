@@ -21,14 +21,15 @@ var questions = [
     },
 ];
 var button = document.querySelector(".startButton")
+var questionArea = document.querySelector(".quizZone")
 var timeLeft = 50;
 var timer;
+var array = 0;
 
 button.addEventListener("click", function(){
     startTimer();
+    createTheQuiz(array);
 });
-
-
 
 function startTimer() {
     // Sets interval in variable
@@ -43,3 +44,11 @@ function startTimer() {
       }
     }, 1000);
   }
+
+function createTheQuiz(array) {
+    var createQuestion = document.createElement("div");
+    createQuestion.setAttribute("class", "que-text");
+    createQuestion.textContent = questions[array]["question"]
+    questionArea.appendChild(createQuestion);
+
+}
