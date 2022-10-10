@@ -25,6 +25,7 @@ var questionArea = document.querySelector(".quizZone")
 var timeLeft = 50;
 var timer;
 var array = 0;
+var userScore = 0;
 
 button.addEventListener("click", function(){
     startTimer();
@@ -47,8 +48,34 @@ function startTimer() {
 
 function createTheQuiz(array) {
     var createQuestion = document.createElement("div");
-    createQuestion.setAttribute("class", "que-text");
+    createQuestion.setAttribute("class", "text");
     createQuestion.textContent = questions[array]["question"]
+    
+    var createAnswers = document.createElement("div");
+    createAnswers.setAttribute("class", "selection")
+    for (var i=0; i<4; i++) {
+        var selections = document.createElement("button");
+        selections.setAttribute("class", "option")
+        selections.textContent = questions[array]["answers"][i];
+        selections.addEventListener("click", choices);
+        createAnswers.appendChild(selections);
+    }
     questionArea.appendChild(createQuestion);
-
+    questionArea.appendChild(createAnswers);
 }
+function choices(beep) {
+    var userSelection = beep.target.textContent;
+    if (userSelection == questions[array]["correct"]) {
+        userScore += 5;
+    } else {
+        userScore-=5;
+        timeLeft-=10;
+    }
+    array++;
+    
+    if (array == questions.length){
+        clearInterval(timer);
+
+    }
+}
+
