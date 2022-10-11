@@ -1,3 +1,4 @@
+// All the questions to be used in the quiz.
 var questions = [
     {
         question: "Commonly used data types DO Not Include:",
@@ -20,17 +21,19 @@ var questions = [
         correct: "all of the above"
     },
 ];
-var button = document.querySelector(".startButton")
+// global variables
+const button = document.querySelector(".startButton")
 var timeLeft = 75;
 var timer;
 var array = 0;
 var userScore;
-
+// if the start button is clicked then the game begins!
 button.addEventListener("click", function(){
+    button.remove();
     startTimer();
     createTheQuiz(array);
 });
-
+//How the timer is started and finished
 function startTimer() {
     // Sets interval in variable
     timer = setInterval(function() {
@@ -45,9 +48,10 @@ function startTimer() {
       }
     }, 1000);
   }
-
+//How I decided to create the quiz. I learned clearing the DOM would have been easier.
 function createTheQuiz(array) {
     var questionArea = document.querySelector(".quizZone")
+    // creating a div element for all my quiz info
     var bigBox = document.createElement("div")
     bigBox.setAttribute("class", "quizZone")
 
@@ -58,7 +62,7 @@ function createTheQuiz(array) {
     
     var createAnswers = document.createElement("div");
     createAnswers.setAttribute("class", "selection")
-
+// this is creating all my selectable quiz answers.
     for (var i=0; i<4; i++) {
         var selections = document.createElement("button");
         selections.setAttribute("class", "option")
@@ -68,14 +72,15 @@ function createTheQuiz(array) {
         var next = document.createElement("br");
         createAnswers.appendChild(next);
     }
-
+// appending my items so that they appear
     bigBox.appendChild(createQuestion);
     bigBox.appendChild(createAnswers);
-
+// setting my parent node to question area over the previous areas!
     questionArea.parentNode.replaceChild(bigBox, questionArea);
 
 
 }
+// How answering questions affects your timer which in turn affects your score. 
 function choices(beep) {
     var userSelection = beep.target.textContent;
     if (userSelection == questions[array]["correct"]) {
@@ -87,13 +92,15 @@ function choices(beep) {
     
     if (array == questions.length){
         userScore=timeLeft;
-        clearInterval(timer);
+        var time = document.querySelector('.timer');
+        time.textContent = timeLeft;
         createFinalScore();
+        clearInterval(timer);
     }  else {    
         createTheQuiz(array);
     }
 }
-
+// this is the big function to create your score.
 function createFinalScore() {
     timeLeft = 75;
     array = 0;
@@ -101,10 +108,10 @@ function createFinalScore() {
     var bigBox = document.createElement("div");
 
     bigBox.setAttribute("class", "quizZone");
-
+// all these are for defining elements that are apart of the score keeping!
     var createQuestion = document.createElement("div");
     createQuestion.setAttribute("class", "text");
-    createQuestion.textContent = "All done!!!";
+    createQuestion.textContent = "It is finished";
 
     var createScore = document.createElement("div");
     createScore.setAttribute("class", "score");
@@ -114,15 +121,15 @@ function createFinalScore() {
 
     var createName = document.createElement("label");
     createName.setAttribute("for","initials");
-    createName.textContent = "Enter your initials: "
+    createName.textContent = "Enter your name: "
 
     var initials = document.createElement("input");
     initials.setAttribute("type","text");
 
     var next = document.createElement("br");
-
+// this is for creating the highscore submission box
     var createHighScoreSubmission = document.createElement("button");
-    createHighScoreSubmission.setAttribute("class","button");
+    createHighScoreSubmission.setAttribute("class","startButton");
     createHighScoreSubmission.textContent = "Submit";
 
     createHighScoreSubmission.addEventListener("click", function() {
@@ -140,7 +147,7 @@ function createFinalScore() {
 
         window.location.replace("./highscore.html");
     });
-
+// appending all the stuff I need!
     bigBox.appendChild(createQuestion);
     bigBox.appendChild(createScore);
     bigBox.appendChild(createHighScore);
