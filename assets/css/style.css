@@ -1,4 +1,8 @@
 ol {
     text-align: center;
     list-style-position: inside;
+    font-size: 40px;
+    font-weight: bold;
+    background: linear-gradient(45deg, red, blue);
+    color: white;
 }
